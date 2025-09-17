@@ -1,5 +1,5 @@
 <script>
-  import { Send, Edit, Trash2 } from "lucide-svelte";
+  import { Send, Edit, Trash2, Mail, FileText, MessageCircle } from "lucide-svelte";
 
   // Fake invoices
   let invoiceList = [
@@ -26,6 +26,16 @@
   let showModal = false;
   let invoiceForModal = null;
 
+  // Floating WhatsApp button
+  let whatsappNumber = "27820000000"; // replace with your number
+  let whatsappMessage = "Hello! I would like to inquire about an invoice.";
+
+  const openWhatsApp = () => {
+    const encodedMessage = encodeURIComponent(whatsappMessage);
+    const url = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+    window.open(url, "_blank");
+  };
+
   const handleEdit = (invoice) => {
     alert(`Editing invoice: ${invoice.number}`);
   };
@@ -44,6 +54,21 @@
   const closeModal = () => {
     showModal = false;
     invoiceForModal = null;
+  };
+
+  const sendEmail = () => {
+    alert(`Email sent for Invoice #${invoiceForModal.number}`);
+    closeModal();
+  };
+
+  const sendWhatsapp = () => {
+    alert(`WhatsApp sent for Invoice #${invoiceForModal.number}`);
+    closeModal();
+  };
+
+  const downloadPDF = () => {
+    alert(`PDF downloaded for Invoice #${invoiceForModal.number}`);
+    closeModal();
   };
 
   const formatCurrency = (value) =>
@@ -134,23 +159,35 @@
 
   <!-- Modal -->
   {#if showModal}
-    <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-md">
+    <div class="fixed inset-0 flex items-center justify-center z-50">
+      <div class="bg-white rounded-2xl shadow-lg w-96 p-6">
         <h2 class="text-xl font-bold mb-4">Send Invoice</h2>
-        <p class="mb-4">Are you sure you want to send invoice <strong>{invoiceForModal.number}</strong> to {invoiceForModal.client}?</p>
-        <div class="flex justify-end space-x-2">
-          <button class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400" on:click={closeModal}>Cancel</button>
-          <button
-            class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
-            on:click={() => {
-              alert(`Invoice ${invoiceForModal.number} sent to ${invoiceForModal.client}!`);
-              closeModal();
-            }}
-          >
-            Send
+        <p class="mb-4">Invoice <strong>{invoiceForModal.number}</strong> for {invoiceForModal.client}</p>
+
+        <!-- Buttons -->
+        <div class="flex justify-between mt-4 space-x-4">
+          <button class="flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-3 rounded-xl shadow" on:click={sendEmail}>
+            <Mail size={20}/> <span>Email</span>
+          </button>
+          <button class="flex items-center space-x-2 bg-green-500 hover:bg-green-600 text-white px-4 py-3 rounded-xl shadow" on:click={sendWhatsapp}>
+            <MessageCircle size={20}/> <span>WhatsApp</span>
+          </button>
+          <button class="flex items-center space-x-2 bg-red-600 hover:bg-red-700 text-white px-4 py-3 rounded-xl shadow" on:click={downloadPDF}>
+            <FileText size={20}/> <span>PDF</span>
           </button>
         </div>
       </div>
     </div>
   {/if}
+
+  <!-- Floating WhatsApp Button -->
+  <button
+    class="fixed bottom-5 right-5 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg flex items-center justify-center z-50"
+    on:click={openWhatsApp}
+    aria-label="Send WhatsApp"
+  >
+    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+      <path d="M12.004 2C6.476 2 2 6.476 2 12c0 1.982.52 3.828 1.417 5.428L2 22l4.644-1.383A9.956 9.956 0 0012.004 22c5.528 0 10.004-4.476 10.004-10 0-5.528-4.476-10-10.004-10zm5.22 14.332c-.23.646-1.31 1.22-1.802 1.3-.477.078-1.07.11-3.09-.933-2.57-1.26-4.21-3.39-4.33-3.53-.12-.143-1-1.23-1-2.35 0-1.122.58-1.67.785-1.898.204-.228.44-.285.59-.285.152 0 .302 0 .436.004.14.004.328-.05.513.378.18.428.61 1.48.664 1.592.056.11.093.236.015.38-.077.143-.117.236-.23.36-.113.122-.238.27-.337.362-.102.094-.206.197-.092.39.115.193.51.81 1.094 1.31.753.633 1.38.84 1.59.938.21.098.334.08.46-.05.123-.13.53-.617.672-.83.14-.214.28-.178.47-.107.19.07 1.19.56 1.39.66.203.098.338.146.39.23.053.083.053.48-.177 1.127z"/>
+    </svg>
+  </button>
 </div>
