@@ -2,33 +2,48 @@
   import "$lib/app.css";
   import { goto } from "$app/navigation";
   import Footer from "$lib/components/Footer.svelte";
-  import { onMount } from "svelte";
+  import { onMount, onDestroy } from "svelte";
 
   // Persistent auth state
   let isLoggedIn = false;
   let currentUser = null;
 
   // Initialize auth state on mount
-  onMount(() => {
+  const checkLogin = () => {
     const storedUser = localStorage.getItem("currentUser");
     if (storedUser) {
-      currentUser = JSON.parse(storedUser);
-      isLoggedIn = true;
+      const user = JSON.parse(storedUser);
+      if (!isLoggedIn) {
+        currentUser = user;
+        isLoggedIn = true;
+      }
+    } else {
+      if (isLoggedIn) {
+        currentUser = null;
+        isLoggedIn = false;
+      }
     }
+  };
+
+  onMount(() => {
+    checkLogin();
+    // Poll localStorage to react to login/logout instantly
+    const interval = setInterval(checkLogin, 200);
+    onDestroy(() => clearInterval(interval));
   });
 
   // Fake login function (for testing)
   const login = async () => {
-    isLoggedIn = true;
     currentUser = { name: "John Doe" };
     localStorage.setItem("currentUser", JSON.stringify(currentUser));
+    isLoggedIn = true;
     await goto("/dashboard");
   };
 
   const logout = async () => {
-    isLoggedIn = false;
-    currentUser = null;
     localStorage.removeItem("currentUser");
+    currentUser = null;
+    isLoggedIn = false;
     await goto("/");
   };
 
@@ -104,6 +119,7 @@
   <slot />
 </main>
 
+<!-- Show footer only if NOT logged in -->
 {#if !isLoggedIn}
   <Footer />
 {/if}

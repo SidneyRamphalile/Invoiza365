@@ -17,6 +17,13 @@
 
 	// Derived store for the current page title
 	const currentTitle = derived(page, ($page) => titles[$page.url.pathname] || '');
+
+	// Check login status before render
+	let isLoggedIn = false;
+	if (typeof localStorage !== "undefined") {
+		const storedUser = localStorage.getItem("currentUser");
+		if (storedUser) isLoggedIn = true;
+	}
 </script>
 
 <div class="flex min-h-screen">
@@ -34,5 +41,12 @@
 		<main class="flex-1 p-6 overflow-auto">
 			<slot />
 		</main>
+
+		<!-- Footer only if not logged in -->
+		{#if !isLoggedIn}
+			<footer class="p-4 bg-gray-200 text-center">
+				<p>© 2025 Your Company. All rights reserved.</p>
+			</footer>
+		{/if}
 	</div>
 </div>

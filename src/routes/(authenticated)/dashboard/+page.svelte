@@ -10,13 +10,34 @@
   let isLoggedIn = false;
   let showModal = false;
 
+  // Check localStorage on mount
   onMount(() => {
     const storedUser = localStorage.getItem("currentUser");
     if (storedUser) {
-      userName = JSON.parse(storedUser).name;
+      const user = JSON.parse(storedUser);
+      userName = user.name;
       isLoggedIn = true;
     }
   });
+
+  // Poll localStorage changes for instant login detection
+  const checkLoginState = () => {
+    const storedUser = localStorage.getItem("currentUser");
+    if (storedUser) {
+      const user = JSON.parse(storedUser);
+      if (!isLoggedIn) {
+        userName = user.name;
+        isLoggedIn = true;
+      }
+    } else {
+      if (isLoggedIn) {
+        userName = "";
+        isLoggedIn = false;
+      }
+    }
+  };
+
+  const loginCheckInterval = setInterval(checkLoginState, 200); // every 200ms
 
   function toggleModal() {
     showModal = !showModal;
@@ -25,20 +46,26 @@
   function closeModal() {
     showModal = false;
   }
+
+  // Cleanup interval when component is destroyed
+  import { onDestroy } from "svelte";
+  onDestroy(() => clearInterval(loginCheckInterval));
 </script>
 
 <!-- Page content -->
 <div class="p-6 relative">
   <!-- Welcome message with plus button -->
-  <div class="flex items-center mb-6">
-    <h1 class="text-2xl font-bold">Welcome, {userName}!</h1>
-    <button
-      on:click={toggleModal}
-      class="ml-3 p-2 rounded-full bg-blue-500 hover:bg-blue-600 text-white"
-    >
-      <Plus size={20} />
-    </button>
-  </div>
+  {#if isLoggedIn}
+    <div class="flex items-center mb-6">
+      <h1 class="text-2xl font-bold">Welcome, {userName}!</h1>
+      <button
+        on:click={toggleModal}
+        class="ml-3 p-2 rounded-full bg-blue-500 hover:bg-blue-600 text-white"
+      >
+        <Plus size={20} />
+      </button>
+    </div>
+  {/if}
 
   <!-- Cards -->
   <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
