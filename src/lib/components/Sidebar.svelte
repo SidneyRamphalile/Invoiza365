@@ -6,43 +6,42 @@
 
   // Sidebar links with paths and icons
   const links = [
-  { name: "Dashboard", path: "/dashboard", icon: "Home" },
+    { name: "Dashboard", path: "/dashboard", icon: "Home" },
 
-  // Staff
-  { name: "Staff", children: [
-      { name: "User", path: "/staff/user", icon: "User" },
-      { name: "Role", path: "/staff/role", icon: "Shield" },
-    ]
-  },
+    // Staff
+    { name: "Staff", children: [
+        { name: "User", path: "/staff/user", icon: "User" },
+        { name: "Role", path: "/staff/role", icon: "Shield" },
+      ]
+    },
 
-  { name: "Clients", path: "/clients", icon: "Users" },
-  { name: "Invoices", path: "/invoices", icon: "FileText" },
-  { name: "Quotes", path: "/quotes", icon: "FilePlus" },
-  { name: "Statements", path: "/statements", icon: "File" },
-  { name: "Delivery Notes", path: "/delivery-notes", icon: "Truck" },
-  { name: "Credit Notes", path: "/credit-notes", icon: "CreditCard" },
-  { name: "Purchase Order", path: "/purchase-order", icon: "ShoppingCart" },
-  { name: "Accounting", path: "/accounting", icon: "Calculator" },
-  { name: "Banking", path: "/banking", icon: "Bank" },
+    { name: "Clients", path: "/clients", icon: "Users" },
+    { name: "Invoices", path: "/invoices", icon: "FileText" },
+    { name: "Quotes", path: "/quotes", icon: "FilePlus" },
+    { name: "Statements", path: "/statements", icon: "File" },
+    { name: "Delivery Notes", path: "/delivery-notes", icon: "Truck" },
+    { name: "Credit Notes", path: "/credit-notes", icon: "CreditCard" },
+    { name: "Purchase Order", path: "/purchase-order", icon: "ShoppingCart" },
+    { name: "Accounting", path: "/accounting", icon: "Calculator" },
+    { name: "Banking", path: "/banking", icon: "Bank" },
 
-  // Reports
-  { name: "Reports", children: [
-      { name: "Income Statement", path: "/reports/income-statement", icon: "BarChart" },
-      { name: "Income Summary", path: "/reports/income-summary", icon: "PieChart" },
-      { name: "Expense Summary", path: "/reports/expense-summary", icon: "PieChart" },
-      { name: "Income vs Expense", path: "/reports/income-vs-expense", icon: "BarChart" },
-      { name: "Cash Flow", path: "/reports/cash-flow", icon: "DollarSign" },
-      { name: "General Ledger", path: "/reports/general-ledger", icon: "Book" },
-      { name: "Balance Sheet", path: "/reports/balance-sheet", icon: "BookOpen" },
-      { name: "Financial Year End", path: "/reports/financial-year-end", icon: "Calendar" },
-    ]
-  },
+    // Reports
+    { name: "Reports", children: [
+        { name: "Income Statement", path: "/reports/income-statement", icon: "BarChart" },
+        { name: "Income Summary", path: "/reports/income-summary", icon: "PieChart" },
+        { name: "Expense Summary", path: "/reports/expense-summary", icon: "PieChart" },
+        { name: "Income vs Expense", path: "/reports/income-vs-expense", icon: "BarChart" },
+        { name: "Cash Flow", path: "/reports/cash-flow", icon: "DollarSign" },
+        { name: "General Ledger", path: "/reports/general-ledger", icon: "Book" },
+        { name: "Balance Sheet", path: "/reports/balance-sheet", icon: "BookOpen" },
+        { name: "Financial Year End", path: "/reports/financial-year-end", icon: "Calendar" },
+      ]
+    },
 
-  { name: "Profile", path: "/profile", icon: "User" },
-  { name: "Documents", path: "/documents", icon: "Folder" },
-  { name: "Settings", path: "/settings", icon: "Settings" },
-];
-
+    { name: "Profile", path: "/profile", icon: "User" },
+    { name: "Documents", path: "/documents", icon: "Folder" },
+    { name: "Settings", path: "/settings", icon: "Settings" },
+  ];
 
   const currentPath = derived(page, ($page) => $page.url.pathname);
   const openMenus = writable({});
@@ -51,8 +50,10 @@
     openMenus.update(menus => ({ ...menus, [name]: !menus[name] }));
   }
 
-  function handleSidebarLogout() {
-    console.log("Logging out...");
+  // Full logout logic
+  async function handleSidebarLogout() {
+    localStorage.removeItem("currentUser");
+    await goto("/"); // redirect to home or login
   }
 </script>
 
@@ -113,6 +114,7 @@
     {/each}
   </nav>
 
+  <!-- Upgrade Button -->
   <button
     class="mt-6 mb-2 w-full px-3 py-2 rounded text-white font-semibold bg-blue-500 hover:bg-blue-600 transition"
     on:click={() => goto("/upgrade")}
@@ -120,6 +122,7 @@
     Upgrade
   </button>
 
+  <!-- Logout Button -->
   <button
     class="mt-2 w-full px-3 py-2 rounded text-white bg-red-600 hover:bg-red-700 transition"
     on:click={handleSidebarLogout}
