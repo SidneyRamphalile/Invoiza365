@@ -84,83 +84,94 @@
   </div>
 </section>
 
-<!-- FEATURES SECTION -->
-<section id="features" class="relative py-20 bg-white text-center scroll-mt-24">
-  <h2 class="text-3xl font-bold text-gray-800 mb-12" data-aos="fade-up">Features</h2>
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-6xl mx-auto">
-    <div class="p-6 rounded-xl shadow-md bg-gray-50 hover:bg-blue-50 transition" data-aos="fade-up" data-aos-delay="100">
-      <h3 class="text-xl font-semibold mb-3">Custom Branding</h3>
-      <p>Add your logo and colors to personalize your invoices.</p>
-    </div>
-    <div class="p-6 rounded-xl shadow-md bg-gray-50 hover:bg-blue-50 transition" data-aos="fade-up" data-aos-delay="200">
-      <h3 class="text-xl font-semibold mb-3">Multiple Currencies</h3>
-      <p>Bill clients in their preferred currency with automatic formatting.</p>
-    </div>
-    <div class="p-6 rounded-xl shadow-md bg-gray-50 hover:bg-blue-50 transition" data-aos="fade-up" data-aos-delay="300">
-      <h3 class="text-xl font-semibold mb-3">Secure Cloud</h3>
-      <p>Access your invoices and client data from anywhere, securely.</p>
-    </div>
-  </div>
-</section>
-
-<!-- PRICING SECTION -->
+<!-- PRICING & FEATURES SECTION -->
 <section id="pricing" class="py-20 bg-gray-50 scroll-mt-24">
   <div class="max-w-6xl mx-auto px-4">
-    <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Pricing Plans</h2>
+    <h2 class="text-3xl font-bold text-center text-gray-800 mb-4">Pricing & Features</h2>
+    <p class="text-center text-blue-600 font-medium mb-12">30 day Free Trial</p>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <!-- BRONZE PLAN -->
       <div class="bg-white rounded-xl shadow-md overflow-hidden transition-transform duration-300 transform hover:scale-105 hover:shadow-xl">
-        <div class="bg-blue-500 text-white py-6 px-4 text-center">
-          <h3 class="text-xl font-semibold">Basic</h3>
-          <p class="text-2xl font-bold">R99<span class="text-sm font-normal"> / month</span></p>
+        <div class="bg-blue-400 text-white py-6 px-4 text-center">
+          <h3 class="text-xl font-semibold">BRONZE</h3>
+          <p class="text-2xl font-bold">R129<span class="text-sm font-normal"> / month</span></p>
         </div>
         <ul class="p-6 space-y-3 text-gray-700">
-          <li class="flex items-center gap-2"><span class="text-green-500">✔</span> Up to 10 clients</li>
-          <li class="flex items-center gap-2"><span class="text-green-500">✔</span> Basic invoicing</li>
-          <li class="flex items-center gap-2"><span class="text-green-500">✔</span> Email support</li>
-          <li class="flex items-center gap-2 text-gray-400"><span class="text-red-500">✖</span> Priority features</li>
+          <li class="flex items-center gap-2"><span class="text-blue-500">✔</span> Admin dashboard</li>
+          <li class="flex items-center gap-2"><span class="text-blue-500">✔</span> Dashboard Overview</li>
+          <li class="pl-6 flex items-center gap-2"><span class="text-blue-500">✔</span> Single User</li>
+          <li class="pl-6 flex items-center gap-2"><span class="text-blue-500">✔</span> Client Statements</li>
+          <li class="flex items-center gap-2"><span class="text-blue-500">✔</span> Invoicing and Quoting</li>
+          <li class="pl-6 flex items-center gap-2"><span class="text-blue-500">✔</span> Recurring Invoices</li>
+          <li class="flex items-center gap-2"><span class="text-blue-500">✔</span> Send quote via WhatsApp</li>
+        </ul>
+        <div class="p-6 text-center">
+          <a href="/register" class="inline-block w-full py-2 rounded-lg bg-blue-400 text-white font-medium hover:bg-blue-500 transition">Get Started</a>
+        </div>
+      </div>
+
+      <!-- SILVER PLAN -->
+      <div class="bg-white rounded-xl shadow-md overflow-hidden transition-transform duration-300 transform hover:scale-105 hover:shadow-xl">
+        <div class="bg-blue-500 text-white py-6 px-4 text-center">
+          <h3 class="text-xl font-semibold">SILVER</h3>
+          <p class="text-2xl font-bold">R169<span class="text-sm font-normal"> / month</span></p>
+        </div>
+        <ul class="p-6 space-y-3 text-gray-700">
+          <li class="flex items-center gap-2"><span class="text-blue-500">✔</span> Admin dashboard</li>
+          <li class="flex items-center gap-2"><span class="text-blue-500">✔</span> Dashboard Overview</li>
+          <li class="pl-6 flex items-center gap-2"><span class="text-blue-500">✔</span> Multi Users - 2+</li>
+          <li class="flex items-center gap-2"><span class="text-blue-500">✔</span> Multi Store Inventory Management</li>
+          <li class="flex items-center gap-2"><span class="text-blue-500">✔</span> Client Statements</li>
+          <li class="flex items-center gap-2"><span class="text-blue-500">✔</span> Invoicing and Quoting</li>
+          <li class="flex items-center gap-2"><span class="text-blue-500">✔</span> Expense Management</li>
+          <li class="flex items-center gap-2"><span class="text-blue-500">✔</span> Recurring Invoices</li>
+          <li class="flex items-center gap-2"><span class="text-blue-500">✔</span> Payment Tracking</li>
+          <li class="flex items-center gap-2"><span class="text-blue-500">✔</span> Accounting Reports (Income Statement, Profit and Loss etc)</li>
+          <li class="flex items-center gap-2"><span class="text-blue-500">✔</span> Send quote via WhatsApp</li>
+          <li class="flex items-center gap-2"><span class="text-blue-500">✔</span> Tax Calculation Payroll</li>
+          <li class="flex items-center gap-2"><span class="text-blue-500">✔</span> Expense Tracking</li>
+          <li class="flex items-center gap-2"><span class="text-blue-500">✔</span> WhatsApp</li>
         </ul>
         <div class="p-6 text-center">
           <a href="/register" class="inline-block w-full py-2 rounded-lg bg-blue-500 text-white font-medium hover:bg-blue-600 transition">Get Started</a>
         </div>
       </div>
 
+      <!-- GOLD PLAN -->
       <div class="bg-white rounded-xl shadow-md overflow-hidden transition-transform duration-300 transform hover:scale-105 hover:shadow-xl">
-        <div class="bg-blue-600 text-white py-6 px-4 text-center">
-          <h3 class="text-xl font-semibold">Pro</h3>
-          <p class="text-2xl font-bold">R149<span class="text-sm font-normal"> / month</span></p>
+        <div class="bg-blue-700 text-white py-6 px-4 text-center">
+          <h3 class="text-xl font-semibold">GOLD</h3>
+          <p class="text-2xl font-bold">R249<span class="text-sm font-normal"> / month</span></p>
         </div>
         <ul class="p-6 space-y-3 text-gray-700">
-          <li class="flex items-center gap-2"><span class="text-green-500">✔</span> Unlimited clients</li>
-          <li class="flex items-center gap-2"><span class="text-green-500">✔</span> Advanced invoicing</li>
-          <li class="flex items-center gap-2"><span class="text-green-500">✔</span> Priority support</li>
-          <li class="flex items-center gap-2"><span class="text-green-500">✔</span> Extra features</li>
+          <li class="flex items-center gap-2"><span class="text-blue-500">✔</span> Admin dashboard</li>
+          <li class="flex items-center gap-2"><span class="text-blue-500">✔</span> Dashboard Overview</li>
+          <li class="pl-6 flex items-center gap-2"><span class="text-blue-500">✔</span> Multi Users - 5+</li>
+          <li class="flex items-center gap-2"><span class="text-blue-500">✔</span> Multi Store Inventory Management</li>
+          <li class="flex items-center gap-2"><span class="text-blue-500">✔</span> Client Statements</li>
+          <li class="flex items-center gap-2"><span class="text-blue-500">✔</span> Dashboard Overview</li>
+          <li class="flex items-center gap-2"><span class="text-blue-500">✔</span> Invoicing and Quoting</li>
+          <li class="flex items-center gap-2"><span class="text-blue-500">✔</span> Expense Management</li>
+          <li class="flex items-center gap-2"><span class="text-blue-500">✔</span> Recurring Invoices</li>
+          <li class="flex items-center gap-2"><span class="text-blue-500">✔</span> Payment Tracking</li>
+          <li class="flex items-center gap-2"><span class="text-blue-500">✔</span> Accounting Reports (Income Statement, Profit and Loss etc)</li>
+          <li class="flex items-center gap-2"><span class="text-blue-500">✔</span> Bank Reconciliation</li>
+          <li class="flex items-center gap-2"><span class="text-blue-500">✔</span> Financial Reports</li>
+          <li class="pl-6 flex items-center gap-2"><span class="text-blue-500">✔</span> Tax Calculation</li>
+          <li class="flex items-center gap-2"><span class="text-blue-500">✔</span> Send quote via WhatsApp</li>
+          <li class="pl-6 flex items-center gap-2"><span class="text-blue-500">✔</span> Expense Tracking</li>
+          <li class="pl-6 flex items-center gap-2"><span class="text-blue-500">✔</span> Payroll</li>
+          <li class="flex items-center gap-2"><span class="text-blue-500">✔</span> Multi-Currency Support</li>
+          <li class="flex items-center gap-2"><span class="text-blue-500">✔</span> WhatsApp Chatbot</li>
         </ul>
         <div class="p-6 text-center">
-          <a href="/register" class="inline-block w-full py-2 rounded-lg bg-blue-600 text-white font-medium hover:bg-blue-700 transition">Get Started</a>
-        </div>
-      </div>
-
-      <div class="bg-white rounded-xl shadow-md overflow-hidden transition-transform duration-300 transform hover:scale-105 hover:shadow-xl">
-        <div class="bg-blue-500 text-white py-6 px-4 text-center">
-          <h3 class="text-xl font-semibold">Enterprise</h3>
-          <p class="text-2xl font-bold">R250<span class="text-sm font-normal"> / month</span></p>
-        </div>
-        <ul class="p-6 space-y-3 text-gray-700">
-          <li class="flex items-center gap-2"><span class="text-green-500">✔</span> Unlimited clients</li>
-          <li class="flex items-center gap-2"><span class="text-green-500">✔</span> All invoicing features</li>
-          <li class="flex items-center gap-2"><span class="text-green-500">✔</span> Dedicated support</li>
-          <li class="flex items-center gap-2"><span class="text-green-500">✔</span> Full control & customizations</li>
-        </ul>
-        <div class="p-6 text-center">
-          <a href="/register" class="inline-block w-full py-2 rounded-lg bg-blue-500 text-white font-medium hover:bg-blue-600 transition">Get Started</a>
+          <a href="/register" class="inline-block w-full py-2 rounded-lg bg-blue-700 text-white font-medium hover:bg-blue-800 transition">Get Started</a>
         </div>
       </div>
     </div>
   </div>
 </section>
-
-
 <!-- FAQ SECTION -->
 <section id="faq" class="relative py-20 bg-white text-center overflow-hidden scroll-mt-24">
   <h2 class="text-3xl font-bold text-gray-800 mb-12" data-aos="fade-up">Frequently Asked Questions</h2>
