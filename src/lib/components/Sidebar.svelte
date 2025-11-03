@@ -1,3 +1,4 @@
+
 <script>
   import { page } from '$app/stores';
   import { derived, writable } from 'svelte/store';
@@ -9,38 +10,74 @@
     { name: "Dashboard", path: "/dashboard", icon: "Home" },
 
     // Staff
-    { name: "Staff", children: [
-        { name: "User", path: "/staff/user", icon: "User" },
-        { name: "Role", path: "/staff/role", icon: "Shield" },
+    { name: "User Management", children: [
+        { name: "Users", path: "/staff/user", icon: "User" },
+        { name: "Roles & Permissions", path: "/staff/role", icon: "Shield" },
       ]
     },
+     { name: "Clients", children: [
+        { name: "New Client", path: "/staff/user", icon: "User" },
+        { name: "All Clients", path: "/staff/role", icon: "User" },
+      ]
+    },
+     { name: "Quotes", children: [
+        { name: "Total Quoted", path: "/quotes", icon: "FilePlus" },
+        { name: "Total Converted", path: "quotes", icon: "FilePlus" },
+        { name: "Total Overdue", path: "/quotes", icon: "FilePlus" },
+      ]
+    },
+      { name: "Invoices", children: [
+        { name: "Total Invoices", path: "/invoices", icon: "FileText" },
+        { name: "Total Paid", path: "quotes", icon: "FileText" },
+        { name: "Total Due", path: "/quotes", icon: "FileText" },
+        { name: "Recuring Invoices", path: "/quotes", icon: "FileText" },
+      ]
+    },
+        { name: "Statements", children: [
+        { name: "Day-Month-Year", path: "/statements", icon: "File" },
 
-    { name: "Clients", path: "/clients", icon: "Users" },
-    { name: "Invoices", path: "/invoices", icon: "FileText" },
-    { name: "Quotes", path: "/quotes", icon: "FilePlus" },
-    { name: "Statements", path: "/statements", icon: "File" },
-    { name: "Delivery Notes", path: "/delivery-notes", icon: "Truck" },
-    { name: "Credit Notes", path: "/credit-notes", icon: "CreditCard" },
-    { name: "Purchase Order", path: "/purchase-order", icon: "ShoppingCart" },
-    { name: "Accounting", path: "/accounting", icon: "Calculator" },
-    { name: "Banking", path: "/banking", icon: "Bank" },
-
-    // Reports
-    { name: "Reports", children: [
-        { name: "Income Statement", path: "/reports/income-statement", icon: "BarChart" },
-        { name: "Income Summary", path: "/reports/income-summary", icon: "PieChart" },
-        { name: "Expense Summary", path: "/reports/expense-summary", icon: "PieChart" },
-        { name: "Income vs Expense", path: "/reports/income-vs-expense", icon: "BarChart" },
-        { name: "Cash Flow", path: "/reports/cash-flow", icon: "DollarSign" },
-        { name: "General Ledger", path: "/reports/general-ledger", icon: "Book" },
+      ]
+    },
+        { name: "Accounting", children: [
+        { name: "Delivery Note", path: "/delivery-notes", icon: "Truck" },
+        { name: "Credit Note", path: "/credit-notes", icon: "CreditCard" },
+        { name: "Purchases", path: "/purchase-order", icon: "ShoppingCart" },
+        { name: "Cashflow", path: "/cash-flow", icon: "DollarSign" },
+        { name: "Profit & Loss", path: "/profit-loss", icon: "Calculator" },
         { name: "Balance Sheet", path: "/reports/balance-sheet", icon: "BookOpen" },
-        { name: "Financial Year End", path: "/reports/financial-year-end", icon: "Calendar" },
+        { name: "Expenses", path: "/reports/expense-summary", icon: "PieChart" },
+        { name: "Vat Report", path: "/reports/vat-report", icon: "Percent" },
+        { name: "Tax Summary", path: "/reports/tax-summary", icon: "ClipboardList" },
       ]
     },
+        { name: "Inventory", children: [
+        { name: "Store/Warehouse", path: "/warehouse", icon: "FileText" },
+        { name: "Product List", path: "/product-list", icon: "FileText" },
+        { name: "Services", path: "/services", icon: "FileText" },
+        { name: "Create Voucher", path: "/create-voucher", icon: "FileText" },
+        { name: "Stock Transfer", path: "/stock-transfer", icon: "FileText" },
+        { name: "Unit of Measure", path: "/unit-of-measure", icon: "FileText" },
+      ]
+    },
+      { name: "Banking", children: [
+        { name: "Link Bank Statement/Upload", path: "/link-bank-statement", icon: "FilePlus" },
+      ]
+    },
+    { name: "Payroll", children: [
+        { name: "Payroll Report", path: "/reports/payroll", icon: "BarChart" },
 
-    { name: "Profile", path: "/profile", icon: "User" },
-    { name: "Documents", path: "/documents", icon: "Folder" },
-    { name: "Settings", path: "/settings", icon: "Settings" },
+      ]
+    },
+        { name: "Settings", children: [
+        { name: "Company Information", path: "/invoices", icon: "Settings" },
+        { name: "User Profile", path: "quotes", icon: "Settings" },
+        { name: "Banking Details", path: "/quotes", icon: "Settings" },
+        { name: "Invoice/Quote Settings", path: "/quotes", icon: "Settings" },
+        { name: "Tax Settings", path: "/quotes", icon: "Settings" },
+        { name: "Payroll/Payslip Settings - Template", path: "/quotes", icon: "Settings" },
+
+      ]
+    },
   ];
 
   const currentPath = derived(page, ($page) => $page.url.pathname);

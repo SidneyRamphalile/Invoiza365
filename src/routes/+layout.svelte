@@ -52,27 +52,28 @@
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
-  const handleNav = async (id) => {
-    if (typeof window === "undefined") return;
+const handleNav = async (id) => {
+  if (typeof window === "undefined") return;
 
-    if (window.location.pathname === "/") {
-      smoothScroll(id);
-    } else {
-      await goto("/#" + id, { noScroll: true });
-
-      const maxAttempts = 10;
-      let attempts = 0;
-
-      const interval = setInterval(() => {
-        const el = document.getElementById(id);
-        if (el || attempts >= maxAttempts) {
-          if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-          clearInterval(interval);
-        }
-        attempts++;
-      }, 100);
+  if (window.location.pathname === "/") {
+    // We're already on home page, scroll directly
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
     }
-  };
+  } else {
+    // Navigate to home page with hash
+    await goto(`/#${id}`);
+    
+    // Wait for page load and then scroll
+    setTimeout(() => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }, 100);
+  }
+};
 </script>
 
 <nav class="flex justify-between items-center px-8 py-4 bg-white shadow-md">
@@ -88,11 +89,8 @@
     <a href="/#home" class="px-3 py-2 rounded-full text-gray-700 hover:bg-blue-500 hover:text-white transition"
        on:click|preventDefault={() => handleNav("home")}>Home</a>
 
-    <a href="/#features" class="px-3 py-2 rounded-full text-gray-700 hover:bg-blue-500 hover:text-white transition"
-       on:click|preventDefault={() => handleNav("features")}>Features</a>
-
-    <a href="/#pricing" class="px-3 py-2 rounded-full text-gray-700 hover:bg-blue-500 hover:text-white transition"
-       on:click|preventDefault={() => handleNav("pricing")}>Pricing</a>
+   <a href="/#pricing" class="px-3 py-2 rounded-full text-gray-700 hover:bg-blue-500 hover:text-white transition"
+   on:click|preventDefault={() => handleNav("pricing")}>Pricing & Features</a>
 
     <a href="/#faq" class="px-3 py-2 rounded-full text-gray-700 hover:bg-blue-500 hover:text-white transition"
        on:click|preventDefault={() => handleNav("faq")}>FAQ</a>
